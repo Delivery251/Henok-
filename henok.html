@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>🏦 HENOK · MODERN FINANCIAL</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Modern Yellow Accent - Clean & Vibrant */
+            --yellow-primary: #fbbf24;
+            --yellow-light: #fde68a;
+            --yellow-soft: #fef9e7;
+            --yellow-pale: #fffbeb;
+            
+            /* Neutral Grays - Clean Background */
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-soft: #f1f5f9;
+            --bg-hover: #f8fafc;
+            
+            /* Text Colors - Readable */
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-tertiary: #64748b;
+            --text-light: #94a3b8;
+            
+            /* Status Colors */
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            
+            /* Borders & Shadows */
+            --border-light: #e2e8f0;
+            --border-soft: #e9e9ef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-yellow: 0 4px 12px rgba(251, 191, 36, 0.2);
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ========== CLEAN HEADER ========== */
+        .header {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--yellow-primary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: var(--shadow-yellow);
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text p {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .date-badge {
+            background: var(--bg-soft);
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--border-light);
+        }
+
+        .lang-toggle {
+            background: var(--bg-soft);
+            border: 1px solid var(--border-light);
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .lang-toggle:hover {
+            background: var(--yellow-primary);
+            color: white;
+            border-color: var(--yellow-primary);
+        }
+
+        /* ========== CLEAN TABS ========== */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            background: var(--bg-card);
+            padding: 4px;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .tab:hover {
+            color: var(--yellow-primary);
+            background: var(--yellow-soft);
+        }
+
+        .tab.active {
+            background: var(--yellow-primary);
+            color: white;
+        }
+
+        /* ========== CLEAN QUICK ACTIONS ========== */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .quick-action-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-action-card:hover {
+            border-color: var(--yellow-primary);
+            box-shadow: var(--shadow-yellow);
+            transform: translateY(-2px);
+        }
+
+        .quick-action-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .quick-action-icon.income {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .quick-action-icon.expense {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .quick-action-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .quick-action-info p {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        /* ========== CLEAN METRICS CARDS ========== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .metric-title {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--yellow-soft);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--yellow-primary);
+            font-size: 1.2rem;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+
+        .trend-up { color: var(--success); }
+        .trend-down { color: var(--danger); }
+
+        /* ========== CLEAN SECTION CARDS ========== */
+        .section-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+        }
+
+        .section-title span:first-child {
+            color: var(--yellow-primary);
+        }
+
+        /* ========== CLEAN BUTTONS ========== */
+        .btn-primary {
+            background: var(--yellow-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            border: 1px solid var(--yellow-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--yellow-primary);
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-yellow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--yellow-primary);
+            color: var(--yellow-primary);
+            background: var(--yellow-soft);
+        }
+
+        /* ========== CLEAN BANK CARDS ========== */
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .bank-card {
+            background: var(--bg-soft);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .bank-card:hover {
+            border-color: var(--yellow-primary);
+            box-shadow: var(--shadow-yellow);
+            background: white;
+        }
+
+        .bank-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .bank-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-primary);
+        }
+
+        .bank-type {
+            background: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            border: 1px solid var(--border-light);
+        }
+
+        .bank-balance {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .bank-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .bank-stat {
+            background: white;
+            padding: 12px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
+
+        .bank-stat-label {
+            color: var(--text-tertiary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bank-stat-value {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .bank-stat-value.income { color: var(--success); }
+        .bank-stat-value.expense { color: var(--danger); }
+
+        .bank-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .bank-action-btn {
+            flex: 1;
+            padding: 10px;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .bank-action-btn:hover {
+            background: var(--yellow-primary);
+            color: white;
+            border-color: var(--yellow-primary);
+        }
+
+        /* ========== CLEAN TABLES ========== */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            background: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        th {
+            text-align: left;
+            padding: 16px;
+            background: var(--bg-soft);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--bg-soft);
+        }
+
+        .amount.income { color: var(--success); font-weight: 600; }
+        .amount.expense { color: var(--danger); font-weight: 600; }
+
+        .bank-tag {
+            background: var(--bg-soft);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        /* ========== CLEAN MODALS ========== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .report-modal {
+            background: white;
+            border-radius: 32px;
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 32px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            background: white;
+            color: var(--text-tertiary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--yellow-primary);
+            color: white;
+            border-color: var(--yellow-primary);
+        }
+
+        .report-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .report-card {
+            background: var(--bg-soft);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        .report-card-label {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .report-card-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* ========== CLEAN EXPORT BUTTONS ========== */
+        .export-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .export-btn {
+            padding: 12px 24px;
+            border: 1px solid var(--border-light);
+            border-radius: 40px;
+            background: white;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .export-btn:hover {
+            border-color: var(--yellow-primary);
+            color: var(--yellow-primary);
+            background: var(--yellow-soft);
+        }
+
+        /* ========== CLEAN TRANSACTION MODAL ========== */
+        .transaction-modal {
+            background: white;
+            border-radius: 32px;
+            width: 100%;
+            max-width: 450px;
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-control, .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--yellow-primary);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--yellow-primary);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-yellow);
+        }
+
+        /* ========== CLEAN TOAST ========== */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 2000;
+        }
+
+        .toast {
+            background: white;
+            border-radius: 60px;
+            padding: 14px 24px;
+            margin-bottom: 8px;
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--yellow-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ========== SETTINGS INPUTS ========== */
+        .settings-input {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 14px;
+            color: var(--text-primary);
+            width: 100%;
+            font-size: 0.95rem;
+        }
+
+        .settings-input:focus {
+            outline: none;
+            border-color: var(--yellow-primary);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+
+        /* ========== LANGUAGE VISIBILITY ========== */
+        [data-lang="amharic"] .english-only { display: none !important; }
+        [data-lang="english"] .amharic-only { display: none !important; }
+
+        .amharic, .amharic-only {
+            font-family: 'Noto Sans Ethiopic', 'Inter', sans-serif;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .quick-actions { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .report-summary { grid-template-columns: 1fr; }
+            .modal-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .export-options { flex-direction: column; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body data-lang="english">
+    <div class="container">
+        <!-- CLEAN HEADER -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">💰</div>
+                <div class="logo-text">
+                    <h1 class="english-only">HENOK</h1>
+                    <h1 class="amharic-only">ሄኖክ</h1>
+                    <p class="english-only">Financial Manager</p>
+                    <p class="amharic-only">የፋይናንስ አስተዳዳሪ</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="date-badge">
+                    <span>📅</span>
+                    <span id="currentDate"></span>
+                </div>
+                <button class="lang-toggle" onclick="toggleLanguage()">
+                    <span>🌐</span>
+                    <span class="english-only">አማርኛ</span>
+                    <span class="amharic-only">English</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- CLEAN TABS -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('dashboard')" id="tabDashboard">
+                <span>📊</span>
+                <span class="english-only">Dashboard</span>
+                <span class="amharic-only">ዳሽቦርድ</span>
+            </button>
+            <button class="tab" onclick="switchTab('banks')" id="tabBanks">
+                <span>🏦</span>
+                <span class="english-only">Banks</span>
+                <span class="amharic-only">ባንኮች</span>
+            </button>
+            <button class="tab" onclick="switchTab('transactions')" id="tabTransactions">
+                <span>📋</span>
+                <span class="english-only">Transactions</span>
+                <span class="amharic-only">ግብይቶች</span>
+            </button>
+            <button class="tab" onclick="switchTab('reports')" id="tabReports">
+                <span>📈</span>
+                <span class="english-only">Reports</span>
+                <span class="amharic-only">ሪፖርቶች</span>
+            </button>
+            <button class="tab" onclick="switchTab('settings')" id="tabSettings">
+                <span>⚙️</span>
+                <span class="english-only">Settings</span>
+                <span class="amharic-only">ማስተካከያ</span>
+            </button>
+        </div>
+
+        <!-- DASHBOARD TAB -->
+        <div id="dashboardTab">
+            <!-- QUICK ACTIONS -->
+            <div class="quick-actions">
+                <div class="quick-action-card" onclick="showIncomeModal()">
+                    <div class="quick-action-icon income">📥</div>
+                    <div class="quick-action-info">
+                        <h3 class="english-only">Add Income</h3>
+                        <h3 class="amharic-only">ገቢ ጨምር</h3>
+                        <p class="english-only">Record new income</p>
+                        <p class="amharic-only">አዲስ ገቢ መዝግብ</p>
+                    </div>
+                </div>
+                <div class="quick-action-card" onclick="showExpenseModal()">
+                    <div class="quick-action-icon expense">📤</div>
+                    <div class="quick-action-info">
+                        <h3 class="english-only">Add Expense</h3>
+                        <h3 class="amharic-only">ወጪ ጨምር</h3>
+                        <p class="english-only">Record new expense</p>
+                        <p class="amharic-only">አዲስ ወጪ መዝግብ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- METRICS GRID -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title english-only">Total Balance</span>
+                        <span class="metric-title amharic-only">ጠቅላላ ቀሪ</span>
+                        <span class="metric-icon">💰</span>
+                    </div>
+                    <div class="metric-value" id="totalBalance">ETB 0.00</div>
+                    <div class="metric-trend">
+                        <span class="trend-up">↑ 12.5%</span>
+                        <span class="english-only">from last month</span>
+                        <span class="amharic-only">ካለፈው ወር</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title english-only">Total Income</span>
+                        <span class="metric-title amharic-only">ጠቅላላ ገቢ</span>
+                        <span class="metric-icon">📥</span>
+                    </div>
+                    <div class="metric-value" id="totalIncomeMetric">ETB 0.00</div>
+                    <div class="metric-trend">
+                        <span class="trend-up">↑ 8.3%</span>
+                        <span class="english-only">this month</span>
+                        <span class="amharic-only">በዚህ ወር</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title english-only">Total Expenses</span>
+                        <span class="metric-title amharic-only">ጠቅላላ ወጪ</span>
+                        <span class="metric-icon">📤</span>
+                    </div>
+                    <div class="metric-value" id="totalExpenseMetric">ETB 0.00</div>
+                    <div class="metric-trend">
+                        <span class="trend-down">↓ 3.2%</span>
+                        <span class="english-only">this month</span>
+                        <span class="amharic-only">በዚህ ወር</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title english-only">Net Flow</span>
+                        <span class="metric-title amharic-only">ተጣራ ፍሰት</span>
+                        <span class="metric-icon">⚡</span>
+                    </div>
+                    <div class="metric-value" id="netFlowMetric">ETB 0.00</div>
+                    <div class="metric-trend">
+                        <span class="trend-up">↑ +15.2%</span>
+                        <span class="english-only">positive</span>
+                        <span class="amharic-only">አዎንታዊ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BANK OVERVIEW -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>🏦</span>
+                        <span class="english-only">Bank Overview</span>
+                        <span class="amharic-only">የባንክ አጠቃላይ እይታ</span>
+                    </h2>
+                    <button class="btn-outline" onclick="switchTab('banks')">
+                        <span>📋</span>
+                        <span class="english-only">View All</span>
+                        <span class="amharic-only">ሁሉንም እይ</span>
+                    </button>
+                </div>
+                <div class="bank-grid" id="bankGrid"></div>
+            </div>
+
+            <!-- RECENT TRANSACTIONS -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>📋</span>
+                        <span class="english-only">Recent Transactions</span>
+                        <span class="amharic-only">የቅርብ ጊዜ ግብይቶች</span>
+                    </h2>
+                    <button class="btn-outline" onclick="switchTab('transactions')">
+                        <span>📊</span>
+                        <span class="english-only">View All</span>
+                        <span class="amharic-only">ሁሉንም እይ</span>
+                    </button>
+                </div>
+                <div class="table-wrapper">
+                    <table id="recentTransactionsTable">
+                        <thead>
+                            <tr>
+                                <th class="english-only">Date</th>
+                                <th class="amharic-only">ቀን</th>
+                                <th class="english-only">Description</th>
+                                <th class="amharic-only">መግለጫ</th>
+                                <th>Bank</th>
+                                <th class="english-only">Type</th>
+                                <th class="amharic-only">አይነት</th>
+                                <th class="english-only">Amount</th>
+                                <th class="amharic-only">መጠን</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentTransactionsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- BANKS TAB -->
+        <div id="banksTab" style="display: none;">
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>🏦</span>
+                        <span class="english-only">All Banks</span>
+                        <span class="amharic-only">ሁሉም ባንኮች</span>
+                    </h2>
+                    <button class="btn-primary" onclick="showAddBankModal()">
+                        <span>➕</span>
+                        <span class="english-only">Add Bank</span>
+                        <span class="amharic-only">ባንክ ጨምር</span>
+                    </button>
+                </div>
+                <div class="bank-grid" id="allBanksGrid"></div>
+            </div>
+        </div>
+
+        <!-- TRANSACTIONS TAB -->
+        <div id="transactionsTab" style="display: none;">
+            <!-- INCOME TRANSACTIONS -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>📥</span>
+                        <span class="english-only">Income Transactions</span>
+                        <span class="amharic-only">የገቢ ግብይቶች</span>
+                    </h2>
+                    <button class="btn-primary" onclick="showIncomeModal()">
+                        <span>➕</span>
+                        <span class="english-only">Add Income</span>
+                        <span class="amharic-only">ገቢ ጨምር</span>
+                    </button>
+                </div>
+                <div class="table-wrapper">
+                    <table id="incomeTable">
+                        <thead>
+                            <tr>
+                                <th class="english-only">Date</th>
+                                <th class="amharic-only">ቀን</th>
+                                <th class="english-only">Source</th>
+                                <th class="amharic-only">ምንጭ</th>
+                                <th>Bank</th>
+                                <th class="english-only">Amount</th>
+                                <th class="amharic-only">መጠን</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="incomeTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- EXPENSE TRANSACTIONS -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>📤</span>
+                        <span class="english-only">Expense Transactions</span>
+                        <span class="amharic-only">የወጪ ግብይቶች</span>
+                    </h2>
+                    <button class="btn-primary" onclick="showExpenseModal()">
+                        <span>➕</span>
+                        <span class="english-only">Add Expense</span>
+                        <span class="amharic-only">ወጪ ጨምር</span>
+                    </button>
+                </div>
+                <div class="table-wrapper">
+                    <table id="expenseTable">
+                        <thead>
+                            <tr>
+                                <th class="english-only">Date</th>
+                                <th class="amharic-only">ቀን</th>
+                                <th class="english-only">Payee</th>
+                                <th class="amharic-only">ለ</th>
+                                <th>Bank</th>
+                                <th class="english-only">Amount</th>
+                                <th class="amharic-only">መጠን</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="expenseTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- REPORTS TAB -->
+        <div id="reportsTab" style="display: none;">
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>📊</span>
+                        <span class="english-only">Financial Reports</span>
+                        <span class="amharic-only">የፋይናንስ ሪፖርቶች</span>
+                    </h2>
+                    <div class="export-options" style="margin:0;">
+                        <button class="export-btn" onclick="exportFullReportToExcel()">
+                            <span>📊</span> Excel
+                        </button>
+                        <button class="export-btn" onclick="exportFullReportToPDF()">
+                            <span>📄</span> PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- REPORT SUMMARY -->
+                <div class="report-summary">
+                    <div class="report-card">
+                        <div class="report-card-label english-only">Total Assets</div>
+                        <div class="report-card-label amharic-only">ጠቅላላ ንብረት</div>
+                        <div class="report-card-value" id="reportTotalAssets">ETB 0.00</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card-label english-only">Total Income</div>
+                        <div class="report-card-label amharic-only">ጠቅላላ ገቢ</div>
+                        <div class="report-card-value" id="reportTotalIncome">ETB 0.00</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card-label english-only">Total Expenses</div>
+                        <div class="report-card-label amharic-only">ጠቅላላ ወጪ</div>
+                        <div class="report-card-value" id="reportTotalExpenses">ETB 0.00</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card-label english-only">Net Flow</div>
+                        <div class="report-card-label amharic-only">ተጣራ ፍሰት</div>
+                        <div class="report-card-value" id="reportNetFlow">ETB 0.00</div>
+                    </div>
+                </div>
+
+                <!-- BANK DETAILS TABLE -->
+                <div class="table-wrapper" style="margin-top:24px;">
+                    <h3 class="section-title" style="margin-bottom:16px;">
+                        <span>🏦</span>
+                        <span class="english-only">Bank Details</span>
+                        <span class="amharic-only">የባንክ ዝርዝሮች</span>
+                    </h3>
+                    <table id="reportBankTable">
+                        <thead>
+                            <tr>
+                                <th class="english-only">Bank</th>
+                                <th class="amharic-only">ባንክ</th>
+                                <th class="english-only">Account</th>
+                                <th class="amharic-only">መለያ</th>
+                                <th class="english-only">Type</th>
+                                <th class="amharic-only">አይነት</th>
+                                <th class="english-only">Balance</th>
+                                <th class="amharic-only">ቀሪ</th>
+                                <th class="english-only">Income</th>
+                                <th class="amharic-only">ገቢ</th>
+                                <th class="english-only">Expense</th>
+                                <th class="amharic-only">ወጪ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportBankBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- ALL TRANSACTIONS TABLE -->
+                <div class="table-wrapper" style="margin-top:24px;">
+                    <h3 class="section-title" style="margin-bottom:16px;">
+                        <span>📋</span>
+                        <span class="english-only">All Transactions</span>
+                        <span class="amharic-only">ሁሉም ግብይቶች</span>
+                    </h3>
+                    <table id="reportTransactionsTable">
+                        <thead>
+                            <tr>
+                                <th class="english-only">Date</th>
+                                <th class="amharic-only">ቀን</th>
+                                <th class="english-only">Type</th>
+                                <th class="amharic-only">አይነት</th>
+                                <th class="english-only">Description</th>
+                                <th class="amharic-only">መግለጫ</th>
+                                <th>Bank</th>
+                                <th class="english-only">Amount</th>
+                                <th class="amharic-only">መጠን</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportTransactionsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div id="settingsTab" style="display: none;">
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>⚙️</span>
+                        <span class="english-only">Settings</span>
+                        <span class="amharic-only">ማስተካከያ</span>
+                    </h2>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <!-- BANK MANAGEMENT -->
+                    <div class="metric-card" style="background: white;">
+                        <h3 style="margin-bottom:16px; color:var(--text-primary);">🏦 Bank Management</h3>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom:16px;">
+                            <input type="text" id="newBankName" placeholder="Bank Name" class="settings-input" style="flex:1;">
+                            <input type="number" id="newBankBalance" placeholder="Initial Balance" class="settings-input" style="flex:1;">
+                            <button class="btn-primary" onclick="addBank()" style="padding:14px 24px;">Add</button>
+                        </div>
+                        <div id="bankSettingsList" style="max-height:300px; overflow-y:auto;"></div>
+                    </div>
+
+                    <!-- DATA MANAGEMENT -->
+                    <div class="metric-card" style="background: white;">
+                        <h3 style="margin-bottom:16px; color:var(--text-primary);">📊 Data Management</h3>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <button class="export-btn" onclick="exportFullReportToExcel()" style="width:100%; justify-content:center;">📊 Export to Excel</button>
+                            <button class="export-btn" onclick="exportFullReportToPDF()" style="width:100%; justify-content:center;">📄 Export to PDF</button>
+                            <button class="export-btn" onclick="backupData()" style="width:100%; justify-content:center;">💾 Backup Data</button>
+                            <label class="export-btn" style="width:100%; justify-content:center; cursor:pointer;">
+                                📂 Import Data
+                                <input type="file" id="importFile" accept=".json" onchange="importData(event)" style="display:none;">
+                            </label>
+                            <button class="export-btn" onclick="clearAllData()" style="width:100%; justify-content:center; color:var(--danger);">🗑️ Clear All Data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANK REPORT MODAL -->
+    <div class="modal-overlay" id="bankReportModal">
+        <div class="report-modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="reportBankName">Bank Report</h2>
+                <button class="modal-close" onclick="closeBankReport()">✕</button>
+            </div>
+            <div id="bankReportContent"></div>
+        </div>
+    </div>
+
+    <!-- INCOME MODAL -->
+    <div class="modal-overlay" id="incomeModal">
+        <div class="transaction-modal">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2 style="color:var(--text-primary);">➕ Add Income</h2>
+                <button class="modal-close" onclick="closeModal('incomeModal')">✕</button>
+            </div>
+            <form id="incomeForm" onsubmit="addIncome(event)">
+                <div class="form-group">
+                    <label>Source</label>
+                    <input type="text" class="form-control" id="incomeSource" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount (ETB)</label>
+                    <input type="number" class="form-control" id="incomeAmount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Bank</label>
+                    <select class="form-select" id="incomeBank" required>
+                        <option value="">Select Bank</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" class="form-control" id="incomeDate" required>
+                </div>
+                <button type="submit" class="btn-submit">Add Income</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- EXPENSE MODAL -->
+    <div class="modal-overlay" id="expenseModal">
+        <div class="transaction-modal">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2 style="color:var(--text-primary);">➕ Add Expense</h2>
+                <button class="modal-close" onclick="closeModal('expenseModal')">✕</button>
+            </div>
+            <form id="expenseForm" onsubmit="addExpense(event)">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" class="form-control" id="expenseDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount (ETB)</label>
+                    <input type="number" class="form-control" id="expenseAmount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Payee</label>
+                    <input type="text" class="form-control" id="expensePayee" required>
+                </div>
+                <div class="form-group">
+                    <label>Bank</label>
+                    <select class="form-select" id="expenseBank" required>
+                        <option value="">Select Bank</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Add Expense</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADD BANK MODAL -->
+    <div class="modal-overlay" id="addBankModal">
+        <div class="transaction-modal">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2 style="color:var(--text-primary);">➕ Add Bank</h2>
+                <button class="modal-close" onclick="closeModal('addBankModal')">✕</button>
+            </div>
+            <form id="addBankForm" onsubmit="addBankFromModal(event)">
+                <div class="form-group">
+                    <label>Bank Name</label>
+                    <input type="text" class="form-control" id="modalBankName" required>
+                </div>
+                <div class="form-group">
+                    <label>Account Number</label>
+                    <input type="text" class="form-control" id="modalBankAccount">
+                </div>
+                <div class="form-group">
+                    <label>Initial Balance</label>
+                    <input type="number" class="form-control" id="modalBankBalance" value="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Bank Type</label>
+                    <select class="form-select" id="modalBankType">
+                        <option>Commercial</option>
+                        <option>Savings</option>
+                        <option>Current</option>
+                        <option>Investment</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Add Bank</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // ========== DATA STRUCTURE ==========
+        let banks = [
+            { 
+                id: 'cbe', 
+                name: 'CBE', 
+                fullName: 'Commercial Bank of Ethiopia',
+                accountNumber: '1000-1234-5678',
+                type: 'Commercial',
+                balance: 8450000, 
+                isCash: false 
+            },
+            { 
+                id: 'awash', 
+                name: 'AWASH', 
+                fullName: 'Awash Bank',
+                accountNumber: '2000-7890-1234',
+                type: 'Commercial',
+                balance: 5620000, 
+                isCash: false 
+            },
+            { 
+                id: 'dashen', 
+                name: 'DASHEN', 
+                fullName: 'Dashen Bank',
+                accountNumber: '3000-4567-8901',
+                type: 'Commercial',
+                balance: 7149965, 
+                isCash: false 
+            },
+            { 
+                id: 'cash', 
+                name: 'CASH', 
+                fullName: 'Cash on Hand',
+                accountNumber: '—',
+                type: 'Cash',
+                balance: 4437902, 
+                isCash: true 
+            }
+        ];
+
+        let incomeData = [
+            { id: 1001, source: "Sales Revenue", amount: 2500000, bank: 'cbe', date: "25/02/2024" },
+            { id: 1002, source: "Commission", amount: 1800000, bank: 'awash', date: "24/02/2024" },
+            { id: 1003, source: "Rent Income", amount: 3200000, bank: 'dashen', date: "23/02/2024" },
+            { id: 1004, source: "Business Income", amount: 2100000, bank: 'cash', date: "22/02/2024" },
+            { id: 1005, source: "Interest", amount: 450000, bank: 'cbe', date: "21/02/2024" },
+            { id: 1006, source: "Dividends", amount: 675000, bank: 'awash', date: "20/02/2024" }
+        ];
+
+        let expenseData = [
+            { id: 2001, date: "25/02/2024", amount: 2750000, payee: "Salaries", bank: 'cbe' },
+            { id: 2002, date: "24/02/2024", amount: 1450000, payee: "Office Rent", bank: 'awash' },
+            { id: 2003, date: "23/02/2024", amount: 2050000, payee: "Utilities", bank: 'dashen' },
+            { id: 2004, date: "22/02/2024", amount: 1662098, payee: "Supplies", bank: 'cash' },
+            { id: 2005, date: "21/02/2024", amount: 350000, payee: "Marketing", bank: 'cbe' },
+            { id: 2006, date: "20/02/2024", amount: 425000, payee: "Travel", bank: 'awash' }
+        ];
+
+        let currentLanguage = 'english';
+        let currentTab = 'dashboard';
+
+        // ========== UTILITY FUNCTIONS ==========
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <span>${type === 'success' ? '✅' : '❌'}</span>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // ========== DATA UPDATES ==========
+        function updateBankBalances() {
+            banks.forEach(bank => bank.balance = 0);
+            
+            incomeData.forEach(inc => {
+                const bank = banks.find(b => b.id === inc.bank);
+                if (bank) bank.balance += inc.amount;
+            });
+
+            expenseData.forEach(exp => {
+                const bank = banks.find(b => b.id === exp.bank);
+                if (bank) bank.balance -= exp.amount;
+            });
+        }
+
+        function calculateTotals() {
+            const totalIncome = incomeData.reduce((sum, i) => sum + i.amount, 0);
+            const totalExpense = expenseData.reduce((sum, e) => sum + e.amount, 0);
+            const totalBalance = banks.reduce((sum, b) => sum + b.balance, 0);
+            
+            document.getElementById('totalBalance').textContent = 'ETB ' + formatNumber(totalBalance);
+            document.getElementById('totalIncomeMetric').textContent = 'ETB ' + formatNumber(totalIncome);
+            document.getElementById('totalExpenseMetric').textContent = 'ETB ' + formatNumber(totalExpense);
+            document.getElementById('netFlowMetric').textContent = 'ETB ' + formatNumber(totalIncome - totalExpense);
+            
+            document.getElementById('reportTotalAssets').textContent = 'ETB ' + formatNumber(totalBalance);
+            document.getElementById('reportTotalIncome').textContent = 'ETB ' + formatNumber(totalIncome);
+            document.getElementById('reportTotalExpenses').textContent = 'ETB ' + formatNumber(totalExpense);
+            document.getElementById('reportNetFlow').textContent = 'ETB ' + formatNumber(totalIncome - totalExpense);
+        }
+
+        // ========== RENDER FUNCTIONS ==========
+        function renderBankCards() {
+            const grids = ['bankGrid', 'allBanksGrid'];
+            
+            grids.forEach(gridId => {
+                const grid = document.getElementById(gridId);
+                if (!grid) return;
+                
+                grid.innerHTML = '';
+                
+                banks.forEach(bank => {
+                    const bankIncomes = incomeData.filter(i => i.bank === bank.id);
+                    const bankExpenses = expenseData.filter(e => e.bank === bank.id);
+                    const totalIncome = bankIncomes.reduce((sum, i) => sum + i.amount, 0);
+                    const totalExpense = bankExpenses.reduce((sum, e) => sum + e.amount, 0);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'bank-card';
+                    card.onclick = () => showBankReport(bank.id);
+                    
+                    card.innerHTML = `
+                        <div class="bank-card-header">
+                            <div class="bank-name">
+                                <span>${bank.isCash ? '💰' : '🏦'}</span>
+                                ${bank.fullName}
+                            </div>
+                            <span class="bank-type">${bank.type}</span>
+                        </div>
+                        <div class="bank-balance">ETB ${formatNumber(bank.balance)}</div>
+                        <div class="bank-stats">
+                            <div class="bank-stat">
+                                <div class="bank-stat-label english-only">Income</div>
+                                <div class="bank-stat-label amharic-only">ገቢ</div>
+                                <div class="bank-stat-value income">ETB ${formatNumber(totalIncome)}</div>
+                            </div>
+                            <div class="bank-stat">
+                                <div class="bank-stat-label english-only">Expense</div>
+                                <div class="bank-stat-label amharic-only">ወጪ</div>
+                                <div class="bank-stat-value expense">ETB ${formatNumber(totalExpense)}</div>
+                            </div>
+                        </div>
+                        <div class="bank-actions">
+                            <button class="bank-action-btn" onclick="event.stopPropagation(); showIncomeModal('${bank.id}')">
+                                <span>📥</span> <span class="english-only">Income</span><span class="amharic-only">ገቢ</span>
+                            </button>
+                            <button class="bank-action-btn" onclick="event.stopPropagation(); showExpenseModal('${bank.id}')">
+                                <span>📤</span> <span class="english-only">Expense</span><span class="amharic-only">ወጪ</span>
+                            </button>
+                            <button class="bank-action-btn" onclick="event.stopPropagation(); showBankReport('${bank.id}')">
+                                <span>📊</span> <span class="english-only">Report</span><span class="amharic-only">ሪፖርት</span>
+                            </button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            });
+        }
+
+        function renderRecentTransactions() {
+            const tbody = document.getElementById('recentTransactionsBody');
+            if (!tbody) return;
+
+            const allTransactions = [
+                ...incomeData.map(i => ({ ...i, type: 'income', desc: i.source })),
+                ...expenseData.map(e => ({ ...e, type: 'expense', desc: e.payee }))
+            ].sort((a, b) => {
+                const [d1,m1,y1] = a.date.split('/');
+                const [d2,m2,y2] = b.date.split('/');
+                return new Date(y2,m2-1,d2) - new Date(y1,m1-1,d1);
+            }).slice(0, 10);
+
+            tbody.innerHTML = allTransactions.map(t => {
+                const bank = banks.find(b => b.id === t.bank) || banks[0];
+                return `
+                    <tr>
+                        <td>${t.date}</td>
+                        <td>${t.desc}</td>
+                        <td><span class="bank-tag">${bank.name}</span></td>
+                        <td><span style="color: ${t.type === 'income' ? 'var(--success)' : 'var(--danger)'}">${t.type === 'income' ? 'Income' : 'Expense'}</span></td>
+                        <td class="amount ${t.type}">${t.type === 'income' ? '+' : '-'} ETB ${formatNumber(t.amount)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderIncomeTable() {
+            const tbody = document.getElementById('incomeTableBody');
+            if (!tbody) return;
+            
+            tbody.innerHTML = incomeData.map(item => {
+                const bank = banks.find(b => b.id === item.bank) || banks[0];
+                return `
+                    <tr>
+                        <td>${item.date}</td>
+                        <td>${item.source}</td>
+                        <td><span class="bank-tag">${bank.name}</span></td>
+                        <td class="amount income">ETB ${formatNumber(item.amount)}</td>
+                        <td><button class="bank-action-btn" onclick="deleteIncome(${item.id})" style="width:36px;">🗑️</button></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderExpenseTable() {
+            const tbody = document.getElementById('expenseTableBody');
+            if (!tbody) return;
+            
+            tbody.innerHTML = expenseData.map(item => {
+                const bank = banks.find(b => b.id === item.bank) || banks[0];
+                return `
+                    <tr>
+                        <td>${item.date}</td>
+                        <td>${item.payee}</td>
+                        <td><span class="bank-tag">${bank.name}</span></td>
+                        <td class="amount expense">ETB ${formatNumber(item.amount)}</td>
+                        <td><button class="bank-action-btn" onclick="deleteExpense(${item.id})" style="width:36px;">🗑️</button></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderReportTables() {
+            // Bank table
+            const bankBody = document.getElementById('reportBankBody');
+            if (bankBody) {
+                bankBody.innerHTML = banks.map(bank => {
+                    const bankIncomes = incomeData.filter(i => i.bank === bank.id);
+                    const bankExpenses = expenseData.filter(e => e.bank === bank.id);
+                    const totalIncome = bankIncomes.reduce((sum, i) => sum + i.amount, 0);
+                    const totalExpense = bankExpenses.reduce((sum, e) => sum + e.amount, 0);
+                    
+                    return `
+                        <tr>
+                            <td><strong>${bank.fullName}</strong></td>
+                            <td>${bank.accountNumber}</td>
+                            <td>${bank.type}</td>
+                            <td class="amount">ETB ${formatNumber(bank.balance)}</td>
+                            <td class="amount income">ETB ${formatNumber(totalIncome)}</td>
+                            <td class="amount expense">ETB ${formatNumber(totalExpense)}</td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            // Transactions table
+            const transBody = document.getElementById('reportTransactionsBody');
+            if (transBody) {
+                const allTransactions = [
+                    ...incomeData.map(i => ({ ...i, type: 'INCOME', desc: i.source })),
+                    ...expenseData.map(e => ({ ...e, type: 'EXPENSE', desc: e.payee }))
+                ].sort((a, b) => {
+                    const [d1,m1,y1] = a.date.split('/');
+                    const [d2,m2,y2] = b.date.split('/');
+                    return new Date(y2,m2-1,d2) - new Date(y1,m1-1,d1);
+                });
+
+                transBody.innerHTML = allTransactions.map(t => {
+                    const bank = banks.find(b => b.id === t.bank) || banks[0];
+                    return `
+                        <tr>
+                            <td>${t.date}</td>
+                            <td><span style="color: ${t.type === 'INCOME' ? 'var(--success)' : 'var(--danger)'}">${t.type}</span></td>
+                            <td>${t.desc}</td>
+                            <td>${bank.name}</td>
+                            <td class="amount ${t.type === 'INCOME' ? 'income' : 'expense'}">${t.type === 'INCOME' ? '+' : '-'} ETB ${formatNumber(t.amount)}</td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+        }
+
+        function renderBankSettings() {
+            const container = document.getElementById('bankSettingsList');
+            if (!container) return;
+
+            container.innerHTML = banks.filter(b => !b.isCash).map(bank => `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:14px; background:var(--bg-soft); border-radius:16px; margin-bottom:8px;">
+                    <div>
+                        <div style="font-weight:600;">${bank.fullName}</div>
+                        <div style="color:var(--text-tertiary); font-size:0.85rem;">${bank.accountNumber} • ${bank.type}</div>
+                    </div>
+                    <button class="bank-action-btn" onclick="deleteBank('${bank.id}')" style="width:36px;">🗑️</button>
+                </div>
+            `).join('');
+        }
+
+        function updateBankDropdowns() {
+            const selects = ['incomeBank', 'expenseBank'];
+            const options = banks.map(bank => 
+                `<option value="${bank.id}">${bank.fullName}</option>`
+            ).join('');
+
+            selects.forEach(id => {
+                const select = document.getElementById(id);
+                if (select) {
+                    select.innerHTML = '<option value="">Select Bank</option>' + options;
+                }
+            });
+        }
+
+        // ========== BANK REPORT ==========
+        function showBankReport(bankId) {
+            const bank = banks.find(b => b.id === bankId);
+            if (!bank) return;
+
+            const bankIncomes = incomeData.filter(i => i.bank === bankId);
+            const bankExpenses = expenseData.filter(e => e.bank === bankId);
+            const totalIncome = bankIncomes.reduce((sum, i) => sum + i.amount, 0);
+            const totalExpense = bankExpenses.reduce((sum, e) => sum + e.amount, 0);
+
+            document.getElementById('reportBankName').innerHTML = bank.fullName;
+
+            const content = document.getElementById('bankReportContent');
+            content.innerHTML = `
+                <div class="report-summary">
+                    <div class="report-card">
+                        <div class="report-card-label">Current Balance</div>
+                        <div class="report-card-value">ETB ${formatNumber(bank.balance)}</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card-label">Total Income</div>
+                        <div class="report-card-value" style="color:var(--success);">ETB ${formatNumber(totalIncome)}</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card-label">Total Expenses</div>
+                        <div class="report-card-value" style="color:var(--danger);">ETB ${formatNumber(totalExpense)}</div>
+                    </div>
+                </div>
+
+                <div class="table-wrapper" style="margin-top:24px;">
+                    <h3 class="section-title" style="margin-bottom:16px;">Transaction History</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${[...bankIncomes.map(i => `
+                                <tr>
+                                    <td>${i.date}</td>
+                                    <td><span style="color:var(--success);">INCOME</span></td>
+                                    <td>${i.source}</td>
+                                    <td class="amount income">+ ETB ${formatNumber(i.amount)}</td>
+                                </tr>
+                            `), ...bankExpenses.map(e => `
+                                <tr>
+                                    <td>${e.date}</td>
+                                    <td><span style="color:var(--danger);">EXPENSE</span></td>
+                                    <td>${e.payee}</td>
+                                    <td class="amount expense">- ETB ${formatNumber(e.amount)}</td>
+                                </tr>
+                            `)].sort((a, b) => {
+                                const dateA = a.match(/<td>(\d{2}\/\d{2}\/\d{4})<\/td>/)?.[1];
+                                const dateB = b.match(/<td>(\d{2}\/\d{2}\/\d{4})<\/td>/)?.[1];
+                                if (!dateA || !dateB) return 0;
+                                const [d1,m1,y1] = dateA.split('/');
+                                const [d2,m2,y2] = dateB.split('/');
+                                return new Date(y2,m2-1,d2) - new Date(y1,m1-1,d1);
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="export-options">
+                    <button class="export-btn" onclick="exportBankReportToExcel('${bankId}')">
+                        <span>📊</span> Export to Excel
+                    </button>
+                    <button class="export-btn" onclick="exportBankReportToPDF('${bankId}')">
+                        <span>📄</span> Export to PDF
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('bankReportModal').classList.add('active');
+        }
+
+        function closeBankReport() {
+            document.getElementById('bankReportModal').classList.remove('active');
+        }
+
+        // ========== CRUD OPERATIONS ==========
+        function addIncome(event) {
+            event.preventDefault();
+            
+            const source = document.getElementById('incomeSource').value;
+            const amount = parseFloat(document.getElementById('incomeAmount').value);
+            const bankId = document.getElementById('incomeBank').value;
+            const dateInput = document.getElementById('incomeDate').value;
+
+            if (!source || !amount || !bankId || !dateInput) {
+                showToast('Please fill all fields', 'error');
+                return;
+            }
+
+            const [year, month, day] = dateInput.split('-');
+            const date = `${day}/${month}/${year}`;
+
+            incomeData.push({
+                id: Date.now(),
+                source,
+                amount,
+                bank: bankId,
+                date
+            });
+
+            updateBankBalances();
+            refreshData();
+            closeModal('incomeModal');
+            showToast('Income added');
+            document.getElementById('incomeForm').reset();
+        }
+
+        function addExpense(event) {
+            event.preventDefault();
+            
+            const dateInput = document.getElementById('expenseDate').value;
+            const amount = parseFloat(document.getElementById('expenseAmount').value);
+            const payee = document.getElementById('expensePayee').value;
+            const bankId = document.getElementById('expenseBank').value;
+
+            if (!dateInput || !amount || !payee || !bankId) {
+                showToast('Please fill all fields', 'error');
+                return;
+            }
+
+            const [year, month, day] = dateInput.split('-');
+            const date = `${day}/${month}/${year}`;
+
+            expenseData.push({
+                id: Date.now(),
+                date,
+                amount,
+                payee,
+                bank: bankId
+            });
+
+            updateBankBalances();
+            refreshData();
+            closeModal('expenseModal');
+            showToast('Expense added');
+            document.getElementById('expenseForm').reset();
+        }
+
+        function addBank() {
+            const name = document.getElementById('newBankName').value;
+            const balance = parseFloat(document.getElementById('newBankBalance').value) || 0;
+
+            if (!name) {
+                showToast('Please enter bank name', 'error');
+                return;
+            }
+
+            banks.push({
+                id: 'bank' + Date.now(),
+                name: name.toUpperCase().substring(0,5),
+                fullName: name,
+                accountNumber: '****-' + Math.floor(1000 + Math.random() * 9000) + '-' + Math.floor(1000 + Math.random() * 9000),
+                type: 'Commercial',
+                balance: balance,
+                isCash: false
+            });
+
+            document.getElementById('newBankName').value = '';
+            document.getElementById('newBankBalance').value = '0';
+            
+            refreshData();
+            updateBankDropdowns();
+            showToast('Bank added');
+        }
+
+        function addBankFromModal(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('modalBankName').value;
+            const account = document.getElementById('modalBankAccount').value || '****-****-****';
+            const balance = parseFloat(document.getElementById('modalBankBalance').value) || 0;
+            const type = document.getElementById('modalBankType').value;
+
+            if (!name) {
+                showToast('Please enter bank name', 'error');
+                return;
+            }
+
+            banks.push({
+                id: 'bank' + Date.now(),
+                name: name.toUpperCase().substring(0,5),
+                fullName: name,
+                accountNumber: account,
+                type: type,
+                balance: balance,
+                isCash: false
+            });
+
+            closeModal('addBankModal');
+            refreshData();
+            updateBankDropdowns();
+            showToast('Bank added');
+        }
+
+        function deleteIncome(id) {
+            if (confirm('Delete this income?')) {
+                incomeData = incomeData.filter(i => i.id !== id);
+                updateBankBalances();
+                refreshData();
+                showToast('Income deleted');
+            }
+        }
+
+        function deleteExpense(id) {
+            if (confirm('Delete this expense?')) {
+                expenseData = expenseData.filter(e => e.id !== id);
+                updateBankBalances();
+                refreshData();
+                showToast('Expense deleted');
+            }
+        }
+
+        function deleteBank(bankId) {
+            const hasTransactions = incomeData.some(i => i.bank === bankId) || expenseData.some(e => e.bank === bankId);
+            
+            if (hasTransactions) {
+                if (!confirm('This bank has transactions. Move them to cash?')) return;
+                incomeData.forEach(i => { if (i.bank === bankId) i.bank = 'cash'; });
+                expenseData.forEach(e => { if (e.bank === bankId) e.bank = 'cash'; });
+            }
+            
+            banks = banks.filter(b => b.id !== bankId);
+            updateBankBalances();
+            refreshData();
+            updateBankDropdowns();
+            showToast('Bank deleted');
+        }
+
+        function clearAllData() {
+            if (confirm('Delete ALL data? This cannot be undone!')) {
+                banks = [
+                    { 
+                        id: 'cbe', name: 'CBE', fullName: 'Commercial Bank of Ethiopia',
+                        accountNumber: '1000-1234-5678', type: 'Commercial', balance: 0, isCash: false 
+                    },
+                    { 
+                        id: 'awash', name: 'AWASH', fullName: 'Awash Bank',
+                        accountNumber: '2000-7890-1234', type: 'Commercial', balance: 0, isCash: false 
+                    },
+                    { 
+                        id: 'dashen', name: 'DASHEN', fullName: 'Dashen Bank',
+                        accountNumber: '3000-4567-8901', type: 'Commercial', balance: 0, isCash: false 
+                    },
+                    { 
+                        id: 'cash', name: 'CASH', fullName: 'Cash on Hand',
+                        accountNumber: '—', type: 'Cash', balance: 0, isCash: true 
+                    }
+                ];
+                incomeData = [];
+                expenseData = [];
+                updateBankBalances();
+                refreshData();
+                updateBankDropdowns();
+                showToast('All data cleared');
+            }
+        }
+
+        // ========== EXPORT FUNCTIONS ==========
+        function exportFullReportToExcel() {
+            const wb = XLSX.utils.book_new();
+            
+            // Summary Sheet
+            const summaryData = [{
+                'Total Balance': banks.reduce((s,b) => s + b.balance, 0),
+                'Total Income': incomeData.reduce((s,i) => s + i.amount, 0),
+                'Total Expenses': expenseData.reduce((s,e) => s + e.amount, 0),
+                'Net Flow': incomeData.reduce((s,i) => s + i.amount, 0) - expenseData.reduce((s,e) => s + e.amount, 0),
+                'Report Date': new Date().toLocaleDateString()
+            }];
+            const summaryWS = XLSX.utils.json_to_sheet(summaryData);
+            XLSX.utils.book_append_sheet(wb, summaryWS, 'Summary');
+
+            // Banks Sheet
+            const banksData = banks.map(b => {
+                const bankIncomes = incomeData.filter(i => i.bank === b.id);
+                const bankExpenses = expenseData.filter(e => e.bank === b.id);
+                return {
+                    'Bank': b.fullName,
+                    'Account': b.accountNumber,
+                    'Type': b.type,
+                    'Balance': b.balance,
+                    'Total Income': bankIncomes.reduce((s,i) => s + i.amount, 0),
+                    'Total Expense': bankExpenses.reduce((s,e) => s + e.amount, 0)
+                };
+            });
+            const banksWS = XLSX.utils.json_to_sheet(banksData);
+            XLSX.utils.book_append_sheet(wb, banksWS, 'Banks');
+
+            // Income Sheet
+            const incomeWS = XLSX.utils.json_to_sheet(incomeData.map(i => ({
+                'Date': i.date,
+                'Source': i.source,
+                'Amount': i.amount,
+                'Bank': banks.find(b => b.id === i.bank)?.fullName || ''
+            })));
+            XLSX.utils.book_append_sheet(wb, incomeWS, 'Income');
+
+            // Expense Sheet
+            const expenseWS = XLSX.utils.json_to_sheet(expenseData.map(e => ({
+                'Date': e.date,
+                'Payee': e.payee,
+                'Amount': e.amount,
+                'Bank': banks.find(b => b.id === e.bank)?.fullName || ''
+            })));
+            XLSX.utils.book_append_sheet(wb, expenseWS, 'Expenses');
+
+            XLSX.writeFile(wb, `HENOK_Report_${new Date().toISOString().split('T')[0]}.xlsx`);
+            showToast('Excel report exported');
+        }
+
+        function exportFullReportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Title
+            doc.setFontSize(24);
+            doc.setTextColor(251, 191, 36);
+            doc.text('HENOK FINANCIAL REPORT', 20, 20);
+
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text(`Generated: ${new Date().toLocaleDateString()}`, 20, 30);
+
+            // Summary
+            const totalBalance = banks.reduce((s,b) => s + b.balance, 0);
+            const totalIncome = incomeData.reduce((s,i) => s + i.amount, 0);
+            const totalExpense = expenseData.reduce((s,e) => s + e.amount, 0);
+
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Summary', 20, 45);
+            doc.setFontSize(10);
+            doc.text(`Total Balance: ETB ${formatNumber(totalBalance)}`, 20, 55);
+            doc.text(`Total Income: ETB ${formatNumber(totalIncome)}`, 20, 62);
+            doc.text(`Total Expenses: ETB ${formatNumber(totalExpense)}`, 20, 69);
+            doc.text(`Net Flow: ETB ${formatNumber(totalIncome - totalExpense)}`, 20, 76);
+
+            // Banks Table
+            doc.setFontSize(14);
+            doc.text('Bank Details', 20, 91);
+            
+            const bankRows = banks.map(b => {
+                const bankIncomes = incomeData.filter(i => i.bank === b.id);
+                const bankExpenses = expenseData.filter(e => e.bank === b.id);
+                return [
+                    b.fullName,
+                    `ETB ${formatNumber(b.balance)}`,
+                    `ETB ${formatNumber(bankIncomes.reduce((s,i) => s + i.amount, 0))}`,
+                    `ETB ${formatNumber(bankExpenses.reduce((s,e) => s + e.amount, 0))}`
+                ];
+            });
+
+            doc.autoTable({
+                startY: 96,
+                head: [['Bank', 'Balance', 'Income', 'Expenses']],
+                body: bankRows,
+                theme: 'striped',
+                headStyles: { fillColor: [251, 191, 36] }
+            });
+
+            // Income Table
+            doc.addPage();
+            doc.setFontSize(16);
+            doc.text('Income Transactions', 20, 20);
+            
+            doc.autoTable({
+                startY: 30,
+                head: [['Date', 'Source', 'Amount', 'Bank']],
+                body: incomeData.map(i => [
+                    i.date,
+                    i.source,
+                    `ETB ${formatNumber(i.amount)}`,
+                    banks.find(b => b.id === i.bank)?.name || ''
+                ]),
+                theme: 'striped',
+                headStyles: { fillColor: [251, 191, 36] }
+            });
+
+            // Expense Table
+            doc.addPage();
+            doc.setFontSize(16);
+            doc.text('Expense Transactions', 20, 20);
+            
+            doc.autoTable({
+                startY: 30,
+                head: [['Date', 'Payee', 'Amount', 'Bank']],
+                body: expenseData.map(e => [
+                    e.date,
+                    e.payee,
+                    `ETB ${formatNumber(e.amount)}`,
+                    banks.find(b => b.id === e.bank)?.name || ''
+                ]),
+                theme: 'striped',
+                headStyles: { fillColor: [251, 191, 36] }
+            });
+
+            doc.save(`HENOK_Report_${new Date().toISOString().split('T')[0]}.pdf`);
+            showToast('PDF report exported');
+        }
+
+        function exportBankReportToExcel(bankId) {
+            const bank = banks.find(b => b.id === bankId);
+            if (!bank) return;
+
+            const wb = XLSX.utils.book_new();
+            
+            const bankIncomes = incomeData.filter(i => i.bank === bankId);
+            const bankExpenses = expenseData.filter(e => e.bank === bankId);
+
+            const summaryData = [{
+                'Bank': bank.fullName,
+                'Account': bank.accountNumber,
+                'Balance': bank.balance,
+                'Total Income': bankIncomes.reduce((s,i) => s + i.amount, 0),
+                'Total Expenses': bankExpenses.reduce((s,e) => s + e.amount, 0)
+            }];
+            const summaryWS = XLSX.utils.json_to_sheet(summaryData);
+            XLSX.utils.book_append_sheet(wb, summaryWS, 'Summary');
+
+            const transactions = [
+                ...bankIncomes.map(i => ({ date: i.date, type: 'INCOME', description: i.source, amount: i.amount })),
+                ...bankExpenses.map(e => ({ date: e.date, type: 'EXPENSE', description: e.payee, amount: e.amount }))
+            ];
+            const transWS = XLSX.utils.json_to_sheet(transactions);
+            XLSX.utils.book_append_sheet(wb, transWS, 'Transactions');
+
+            XLSX.writeFile(wb, `${bank.name}_Report_${new Date().toISOString().split('T')[0]}.xlsx`);
+            showToast('Bank report exported');
+        }
+
+        function exportBankReportToPDF(bankId) {
+            const bank = banks.find(b => b.id === bankId);
+            if (!bank) return;
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(24);
+            doc.setTextColor(251, 191, 36);
+            doc.text(bank.fullName, 20, 20);
+
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text(`Account: ${bank.accountNumber}`, 20, 30);
+            doc.text(`Generated: ${new Date().toLocaleDateString()}`, 20, 37);
+
+            const bankIncomes = incomeData.filter(i => i.bank === bankId);
+            const bankExpenses = expenseData.filter(e => e.bank === bankId);
+            const totalIncome = bankIncomes.reduce((s,i) => s + i.amount, 0);
+            const totalExpense = bankExpenses.reduce((s,e) => s + e.amount, 0);
+
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Summary', 20, 52);
+            doc.setFontSize(10);
+            doc.text(`Current Balance: ETB ${formatNumber(bank.balance)}`, 20, 62);
+            doc.text(`Total Income: ETB ${formatNumber(totalIncome)}`, 20, 69);
+            doc.text(`Total Expenses: ETB ${formatNumber(totalExpense)}`, 20, 76);
+
+            const transactions = [
+                ...bankIncomes.map(i => ({ date: i.date, desc: i.source, type: 'INCOME', amount: i.amount })),
+                ...bankExpenses.map(e => ({ date: e.date, desc: e.payee, type: 'EXPENSE', amount: e.amount }))
+            ].sort((a,b) => {
+                const [d1,m1,y1] = a.date.split('/');
+                const [d2,m2,y2] = b.date.split('/');
+                return new Date(y2,m2-1,d2) - new Date(y1,m1-1,d1);
+            });
+
+            doc.autoTable({
+                startY: 86,
+                head: [['Date', 'Description', 'Type', 'Amount']],
+                body: transactions.map(t => [
+                    t.date,
+                    t.desc,
+                    t.type,
+                    `${t.type === 'INCOME' ? '+' : '-'} ETB ${formatNumber(t.amount)}`
+                ]),
+                theme: 'striped',
+                headStyles: { fillColor: [251, 191, 36] }
+            });
+
+            doc.save(`${bank.name}_Report_${new Date().toISOString().split('T')[0]}.pdf`);
+            showToast('Bank PDF exported');
+        }
+
+        function backupData() {
+            const data = {
+                banks,
+                income: incomeData,
+                expenses: expenseData,
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `HENOK_Backup_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            showToast('Backup created');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    if (data.banks) banks = data.banks;
+                    if (data.income) incomeData = data.income;
+                    if (data.expenses) expenseData = data.expenses;
+                    
+                    updateBankBalances();
+                    refreshData();
+                    updateBankDropdowns();
+                    showToast('Data imported');
+                } catch (error) {
+                    showToast('Invalid file', 'error');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        // ========== UI FUNCTIONS ==========
+        function refreshData() {
+            updateBankBalances();
+            calculateTotals();
+            renderBankCards();
+            renderRecentTransactions();
+            renderIncomeTable();
+            renderExpenseTable();
+            renderReportTables();
+            renderBankSettings();
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(`tab${tab.charAt(0).toUpperCase() + tab.slice(1)}`).classList.add('active');
+            
+            document.getElementById('dashboardTab').style.display = tab === 'dashboard' ? 'block' : 'none';
+            document.getElementById('banksTab').style.display = tab === 'banks' ? 'block' : 'none';
+            document.getElementById('transactionsTab').style.display = tab === 'transactions' ? 'block' : 'none';
+            document.getElementById('reportsTab').style.display = tab === 'reports' ? 'block' : 'none';
+            document.getElementById('settingsTab').style.display = tab === 'settings' ? 'block' : 'none';
+            
+            if (tab === 'reports') {
+                renderReportTables();
+            } else if (tab === 'settings') {
+                renderBankSettings();
+            }
+        }
+
+        function showIncomeModal(bankId) {
+            updateBankDropdowns();
+            if (bankId) {
+                document.getElementById('incomeBank').value = bankId;
+            }
+            document.getElementById('incomeModal').classList.add('active');
+        }
+
+        function showExpenseModal(bankId) {
+            updateBankDropdowns();
+            if (bankId) {
+                document.getElementById('expenseBank').value = bankId;
+            }
+            document.getElementById('expenseModal').classList.add('active');
+        }
+
+        function showAddBankModal() {
+            document.getElementById('addBankModal').classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'english' ? 'amharic' : 'english';
+            document.body.setAttribute('data-lang', currentLanguage);
+            refreshData();
+            showToast(currentLanguage === 'english' ? 'English' : 'አማርኛ');
+        }
+
+        // Initialize
+        window.onload = function() {
+            updateBankBalances();
+            refreshData();
+            updateBankDropdowns();
+            
+            const today = new Date().toISOString().split('T')[0];
+            if (document.getElementById('incomeDate')) document.getElementById('incomeDate').value = today;
+            if (document.getElementById('expenseDate')) document.getElementById('expenseDate').value = today;
+            
+            document.getElementById('currentDate').innerHTML = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        };
+
+        // Close modals on escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
